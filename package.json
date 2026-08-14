@@ -1,0 +1,8 @@
+{
+  "name": "arena-warmup",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Warm Up Arena Volley Team Verona 2026/27 — protocollo RAMP con coach AI",
+  "type": "module",
+  "engines": { "node": ">=20" }
+}
