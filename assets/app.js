@@ -49,19 +49,26 @@
       </div>
     </div>`;
 
-  $("#proto-list").innerHTML = PROTOCOLLI.map(
-    (p) => `<details class="card proto ${p.colore}" id="proto-${p.id}">
+  $("#proto-list").innerHTML = PROTOCOLLI.map((p) => {
+    const nEs = p.fasi.reduce((a, f) => a + f.esercizi.length, 0);
+    const ritmo = p.fasi.map((f) => `${f.sigla} ${Math.round(f.secondi / 60)}′`).join(" · ");
+    return `<details class="card proto ${p.colore}" id="proto-${p.id}">
       <summary>
-        <div class="p-top">
-          <span class="pill">Protocollo ${esc(p.id)}</span>
-          <span class="dur">${p.matchday ? "Pre-gara" : p.durata + " min"}</span>
-          <span class="chev">▾</span>
+        <div class="p-head">
+          <span class="num">${esc(p.id)}</span>
+          <div class="p-txt">
+            <h3>${esc(p.nome)}</h3>
+            <p class="focus">${esc(p.focus)}</p>
+            <p class="p-meta">${p.matchday ? "Pre-gara" : p.durata + " min"} · ${nEs} esercizi · ${ritmo}</p>
+          </div>
         </div>
-        <h3>${esc(p.nome)}</h3>
-        <p class="focus">${esc(p.focus)}</p>
-        ${p.quando ? `<p class="quando">${esc(p.quando)}</p>` : ""}
+        <div class="p-actions">
+          <button class="btn primary" data-start="${p.id}">▶ Avvia</button>
+          <span class="btn ghost">Esercizi <i class="chev">▾</i></span>
+        </div>
       </summary>
       <div class="body">
+        ${p.quando ? `<p class="quando">${esc(p.quando)}</p>` : ""}
         ${p.fasi
           .map(
             (f) => `<div class="fase">
@@ -76,25 +83,17 @@
           <button class="btn" data-evidenze="${p.id}">Perché funziona</button>
         </div>
       </div>
-    </details>`
-  ).join("");
+    </details>`;
+  }).join("");
 
-  /* ---------- Settimana ---------- */
-  const oggiIdx = new Date().getDay();
-  const oggi = SETTIMANA.find((d) => d.giorno === oggiIdx) || SETTIMANA[0];
-
+  /* ---------- Rotazione di esempio ---------- */
   $("#week").innerHTML = SETTIMANA.map(
-    (d) => `<button class="day ${d.match ? "match" : ""} ${d.giorno === oggiIdx ? "oggi" : ""}" data-start="${d.protocollo}">
-      <span class="d">${esc(d.label)}${d.giorno === oggiIdx ? '<span class="oggi-tag">oggi</span>' : ""}</span>
+    (d) => `<button class="day ${d.match ? "match" : ""}" data-start="${d.protocollo}">
+      <span class="d">${esc(d.label)}</span>
       <span class="p">${esc(d.protocollo)} — ${esc(d.nome)}</span>
       <span class="n">${esc(d.nota)}</span>
     </button>`
   ).join("");
-
-  const protoOggi = PROTOCOLLI.find((p) => p.id === oggi.protocollo);
-  $("#today-name").firstChild.textContent = `${oggi.protocollo} — ${protoOggi ? protoOggi.nome : oggi.nome}`;
-  $("#today-note").textContent = oggi.nota;
-  $("#btn-today").addEventListener("click", () => apriCampo(oggi.protocollo));
 
   /* ---------- Semaforo ---------- */
   const iconaSem = { verde: "✓", giallo: "!", rosso: "✕" };
@@ -188,7 +187,9 @@
     $("#f-name").textContent = `${corrente.id} — ${corrente.nome}`;
     $("#f-focus").textContent = corrente.focus;
     $("#f-key").innerHTML = `<strong style="color:var(--cyan)">Chiave tecnica:</strong> ${esc(corrente.chiave)}`;
-    $("#f-steps").innerHTML = corrente.fasi.map(() => "<i></i>").join("");
+    $("#f-steps").innerHTML = corrente.fasi
+      .map((f, i) => `<button class="step" data-fase="${i}" aria-label="Vai a ${f.sigla}"></button>`)
+      .join("");
     caricaFase(0);
     lockScreen();
   }
@@ -218,7 +219,7 @@
         </li>`
       )
       .join("");
-    $$("#f-steps i").forEach((el, n) => el.classList.toggle("on", n <= i));
+    $$("#f-steps .step").forEach((el, n) => el.classList.toggle("on", n <= i));
     $("#f-next").textContent = i < corrente.fasi.length - 1 ? "Fase successiva →" : "Chiudi seduta ✓";
     aggiorna();
   }
@@ -255,6 +256,10 @@
     }, 1000);
   }
 
+  $("#f-steps").addEventListener("click", (e) => {
+    const b = e.target.closest(".step");
+    if (b) caricaFase(+b.dataset.fase);
+  });
   $("#f-toggle").addEventListener("click", avvia);
   $("#f-close").addEventListener("click", chiudiCampo);
   $("#f-next").addEventListener("click", () => {
@@ -272,7 +277,7 @@
   });
   document.addEventListener("click", (e) => {
     const b = e.target.closest("[data-start]");
-    if (b) { e.preventDefault(); apriCampo(b.dataset.start); }
+    if (b) { e.preventDefault(); e.stopPropagation(); apriCampo(b.dataset.start); }
   });
 
   /* =============================================================

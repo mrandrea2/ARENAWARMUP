@@ -35,78 +35,42 @@
     </div>
   </div>
   <nav class="tabs" aria-label="Sezioni">
-    <a href="#ramp">RAMP</a>
-    <a href="#protocolli">5 Protocolli</a>
-    <a href="#settimana">Settimana</a>
+    <a href="#protocolli">Protocolli</a>
     <a href="#semaforo">Semaforo</a>
     <a href="#coach">Coach AI</a>
+    <a href="#ramp">Modello RAMP</a>
+    <a href="#settimana">Rotazione</a>
     <a href="#basi">Basi scientifiche</a>
   </nav>
 </header>
 
 <main class="wrap">
 
-  <!-- HERO + protocollo di oggi -->
-  <section class="hero">
-    <div class="glow a"></div><div class="glow b"></div>
-    <span class="eyebrow">🏐 Prevenzione &amp; prestazione</span>
-    <h2>Warm Up <span>Arena Volley</span></h2>
-    <p>Sistema operativo integrato da <strong>15 minuti</strong> per la prevenzione degli infortuni (LCA, spalla, caviglia) e il potenziamento neuromuscolare, basato sul <strong>modello RAMP di Jeffreys</strong>.</p>
-    <div class="today" id="today">
-      <div>
-        <div class="lbl">Oggi in palestra</div>
-        <div class="val" id="today-name">—<small id="today-note"></small></div>
-      </div>
-      <button class="btn-play" id="btn-today">▶ Avvia</button>
-    </div>
-  </section>
-
-  <!-- KPI -->
-  <section class="kpi-grid" id="kpi" aria-label="Indicatori chiave"></section>
-
-  <!-- RAMP -->
-  <section id="ramp">
-    <div class="sec-head">
-      <span class="bar"></span>
-      <h2>La struttura del modello RAMP</h2>
-      <span class="tag">Ian Jeffreys</span>
-    </div>
-    <div class="ramp-grid" id="ramp-grid"></div>
+  <!-- INTESTAZIONE COMPATTA -->
+  <div class="print-head">
+    <h1>Warm Up Arena Volley — Stagione <span class="stagione-txt">2026/27</span></h1>
+    <p>Arena Volley Team Verona · protocolli di riscaldamento secondo il modello RAMP · 15 minuti</p>
+  </div>
+  <section class="intro">
+    <h2>Scegli il protocollo</h2>
+    <p>Cinque sedute da 15 minuti sul modello RAMP. Tocca <strong>Avvia</strong>: timer per fase, esercizi uno alla volta, schermo che resta acceso.</p>
   </section>
 
   <!-- PROTOCOLLI -->
   <section id="protocolli">
-    <div class="sec-head">
-      <span class="bar orange"></span>
-      <h2>I 5 protocolli operativi</h2>
-      <span class="tag">~15 min</span>
-    </div>
     <div class="proto-list" id="proto-list"></div>
   </section>
 
-  <div class="duo">
-    <!-- SETTIMANA -->
-    <section id="settimana">
-      <div class="sec-head">
-        <span class="bar"></span>
-        <h2>Programmazione settimanale</h2>
-      </div>
-      <div class="card">
-        <div class="week" id="week"></div>
-      </div>
-    </section>
-
-    <!-- SEMAFORO -->
-    <section id="semaforo">
-      <div class="sec-head">
-        <span class="bar orange"></span>
-        <h2>Semaforo del dolore</h2>
-      </div>
-      <div class="card">
-        <div class="semaforo" id="semaforo-list"></div>
-      </div>
-    </section>
-  </div>
+  <!-- SEMAFORO -->
+  <section id="semaforo">
+    <div class="sec-head">
+      <span class="bar orange"></span>
+      <h2>Semaforo del dolore</h2>
+    </div>
+    <div class="card">
+      <div class="semaforo" id="semaforo-list"></div>
+    </div>
+  </section>
 
   <!-- COACH AI -->
   <section id="coach" class="no-print">
@@ -128,6 +92,29 @@
     </div>
   </section>
 
+  <!-- COME È COSTRUITO -->
+  <section id="ramp">
+    <div class="sec-head">
+      <span class="bar"></span>
+      <h2>Come è costruito: il modello RAMP</h2>
+      <span class="tag">Ian Jeffreys</span>
+    </div>
+    <div class="ramp-grid" id="ramp-grid"></div>
+    <div class="kpi-grid" id="kpi" aria-label="Indicatori chiave"></div>
+  </section>
+
+  <!-- ROTAZIONE -->
+  <section id="settimana">
+    <div class="sec-head">
+      <span class="bar"></span>
+      <h2>Esempio di rotazione</h2>
+    </div>
+    <div class="card">
+      <p class="sec-intro">Una distribuzione tipo nel microciclo, non un obbligo. Se la settimana cambia, scegli il protocollo in base al carico della seduta: molti salti → 01, molta battuta e attacco → 02, difesa e ricezione → 03, giorno di forza o post-gara → 04, pre-gara → 05. Tocca un giorno per avviare quel protocollo.</p>
+      <div class="week" id="week"></div>
+    </div>
+  </section>
+
   <!-- BASI SCIENTIFICHE -->
   <section id="basi">
     <div class="sec-head">
@@ -146,7 +133,7 @@
   </section>
 
   <footer class="site">
-    <p>© 2026 <strong>Arena Volley Team Verona</strong> — Protocollo Warm Up <span class="stagione-txt">2026/27</span><br></p>
+    <p>© 2026 <strong>Arena Volley Team Verona</strong> — Protocollo Warm Up <span class="stagione-txt">2026/27</span><br>Creato da Andrea Bertelli</p>
   </footer>
 </main>
 

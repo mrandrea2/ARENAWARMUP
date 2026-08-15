@@ -3,9 +3,10 @@
 Web app del protocollo di riscaldamento (modello RAMP di Jeffreys) dell'**Arena Volley Team Verona**.
 Funziona da telefono, si installa come app, e funziona anche **senza rete** in palestra.
 
-- 5 protocolli operativi da 15 minuti, con **modalità campo**: timer per fase R / AM / P, schermo che resta acceso, spunta sugli esercizi fatti.
-- Protocollo del giorno evidenziato in automatico secondo la rotazione settimanale.
-- Semaforo del dolore sempre a portata di mano.
+- I 5 protocolli sono la prima cosa che si vede: si sceglie e si parte, senza aprire nulla.
+- **Modalità campo**: timer per fase R / AM / P, un esercizio alla volta con dose e chiave tecnica, schermo che resta acceso, spunta su quello che è stato fatto, salto di fase toccando la barra di avanzamento.
+- Semaforo del dolore subito sotto i protocolli.
+- La rotazione settimanale resta come esempio in fondo, non impone niente: si sceglie il protocollo in base al carico della seduta.
 - **Coach AI** (Claude) per adattare la seduta al volo: meno tempo, mezzo campo, atleta in giallo, gruppo U19.
 - **Basi scientifiche** con i riferimenti collegati agli articoli originali su DOI.
 - Stampa / PDF pulita per la bacheca dello spogliatoio.
@@ -106,4 +107,4 @@ Il Coach AI è un supporto alla programmazione, non una valutazione clinica. Val
 
 ---
 
-© 2026 Arena Volley Team Verona — Human Performance Lab
+© 2026 Arena Volley Team Verona — creato da Andrea Bertelli

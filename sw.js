@@ -1,5 +1,5 @@
 /* Service worker: l'app funziona anche senza rete in palestra */
-const CACHE = "arena-warmup-v2";
+const CACHE = "arena-warmup-v4";
 const FILES = [
   "/", "/index.html",
   "/assets/styles.css", "/assets/data.js", "/assets/app.js",
